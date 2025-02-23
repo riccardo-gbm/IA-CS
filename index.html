@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Costo de Vida</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Selecciona tu Ciudad</title>
+    <script>
+        function redirectToCity() {
+            let city = document.getElementById("city").value;
+            if (city === "sydney") {
+                window.location.href = "sydney.html";
+            } else {
+                alert("Por ahora, solo está disponible Sydney.");
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Calculadora de Costo de Vida</h1>
-    <label for="city">Selecciona una ciudad:</label>
-    <select id="city" onchange="showCityForm()">
-        <option value="">--Selecciona una ciudad--</option>
+    <h1>Selecciona tu ciudad</h1>
+    <label for="city">Elige una ciudad:</label>
+    <select id="city">
+        <option value="">-- Selecciona una ciudad --</option>
         <option value="sydney">Sydney</option>
         <option value="melbourne">Melbourne</option>
         <option value="monterrey">Monterrey</option>
@@ -18,9 +27,6 @@
         <option value="ottawa">Ottawa</option>
         <option value="toronto">Toronto</option>
     </select>
-
-    <div id="form-container"></div>
-
-    <script src="script.js"></script>
+    <button onclick="redirectToCity()">Continuar</button>
 </body>
 </html>
