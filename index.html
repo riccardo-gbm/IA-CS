@@ -8,45 +8,18 @@
 </head>
 <body>
     <h1>Calculadora de Costo de Vida</h1>
-    <form id="cost-form">
-        <label for="city">Selecciona una ciudad:</label>
-        <select id="city">
-            <option value="sydney">Sydney</option>
-            <option value="melbourne">Melbourne</option>
-            <option value="monterrey">Monterrey</option>
-            <option value="cdmx">Ciudad de México</option>
-            <option value="ottawa">Ottawa</option>
-            <option value="toronto">Toronto</option>
-        </select>
+    <label for="city">Selecciona una ciudad:</label>
+    <select id="city" onchange="showCityForm()">
+        <option value="">--Selecciona una ciudad--</option>
+        <option value="sydney">Sydney</option>
+        <option value="melbourne">Melbourne</option>
+        <option value="monterrey">Monterrey</option>
+        <option value="cdmx">Ciudad de México</option>
+        <option value="ottawa">Ottawa</option>
+        <option value="toronto">Toronto</option>
+    </select>
 
-        <label for="rent">Renta mensual ($):</label>
-        <input type="number" id="rent" required>
-
-        <label for="utilities">Servicios básicos ($):</label>
-        <input type="number" id="utilities" required>
-
-        <label for="transport">Transporte ($):</label>
-        <input type="number" id="transport" required>
-
-        <label for="food">Alimentación ($):</label>
-        <input type="number" id="food" required>
-
-        <label for="entertainment">Entretenimiento ($):</label>
-        <input type="number" id="entertainment" required>
-
-        <label for="health">Salud ($):</label>
-        <input type="number" id="health" required>
-
-        <label for="personal">Gastos personales ($):</label>
-        <input type="number" id="personal" required>
-
-        <label for="taxes">Impuestos ($):</label>
-        <input type="number" id="taxes" required>
-
-        <button type="button" onclick="calculateCost()">Calcular</button>
-    </form>
-
-    <h2>Costo total de vida: $<span id="total-cost">0</span></h2>
+    <div id="form-container"></div>
 
     <script src="script.js"></script>
 </body>
