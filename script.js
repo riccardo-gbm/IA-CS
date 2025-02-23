@@ -1,3 +1,47 @@
+function showCityForm() {
+    let city = document.getElementById("city").value;
+    let formContainer = document.getElementById("form-container");
+
+    if (!city) {
+        formContainer.innerHTML = "";
+        return;
+    }
+
+    let formHTML = `
+        <h2>Formulario para ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+        <form id="cost-form">
+            <label for="rent">Renta mensual ($):</label>
+            <input type="number" id="rent" required>
+
+            <label for="utilities">Servicios básicos ($):</label>
+            <input type="number" id="utilities" required>
+
+            <label for="transport">Transporte ($):</label>
+            <input type="number" id="transport" required>
+
+            <label for="food">Alimentación ($):</label>
+            <input type="number" id="food" required>
+
+            <label for="entertainment">Entretenimiento ($):</label>
+            <input type="number" id="entertainment" required>
+
+            <label for="health">Salud ($):</label>
+            <input type="number" id="health" required>
+
+            <label for="personal">Gastos personales ($):</label>
+            <input type="number" id="personal" required>
+
+            <label for="taxes">Impuestos ($):</label>
+            <input type="number" id="taxes" required>
+
+            <button type="button" onclick="calculateCost()">Calcular</button>
+        </form>
+        <h2>Costo total de vida: $<span id="total-cost">0</span></h2>
+    `;
+
+    formContainer.innerHTML = formHTML;
+}
+
 function calculateCost() {
     let rent = parseFloat(document.getElementById("rent").value) || 0;
     let utilities = parseFloat(document.getElementById("utilities").value) || 0;
@@ -12,25 +56,4 @@ function calculateCost() {
 
     document.getElementById("total-cost").textContent = totalCost.toFixed(2);
 }
-const cityData = {
-    sydney: { rent: 2000, utilities: 150, transport: 120, food: 400, entertainment: 200, health: 100, personal: 250, taxes: 300 },
-    melbourne: { rent: 1800, utilities: 140, transport: 110, food: 380, entertainment: 190, health: 90, personal: 230, taxes: 280 },
-    monterrey: { rent: 800, utilities: 100, transport: 50, food: 200, entertainment: 150, health: 80, personal: 150, taxes: 100 },
-    cdmx: { rent: 700, utilities: 90, transport: 40, food: 180, entertainment: 130, health: 70, personal: 140, taxes: 90 },
-    ottawa: { rent: 1600, utilities: 130, transport: 100, food: 350, entertainment: 180, health: 95, personal: 220, taxes: 260 },
-    toronto: { rent: 2200, utilities: 160, transport: 130, food: 450, entertainment: 210, health: 110, personal: 270, taxes: 320 }
-};
 
-document.getElementById("city").addEventListener("change", function() {
-    let city = this.value;
-    if (cityData[city]) {
-        document.getElementById("rent").value = cityData[city].rent;
-        document.getElementById("utilities").value = cityData[city].utilities;
-        document.getElementById("transport").value = cityData[city].transport;
-        document.getElementById("food").value = cityData[city].food;
-        document.getElementById("entertainment").value = cityData[city].entertainment;
-        document.getElementById("health").value = cityData[city].health;
-        document.getElementById("personal").value = cityData[city].personal;
-        document.getElementById("taxes").value = cityData[city].taxes;
-    }
-});
