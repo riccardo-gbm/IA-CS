@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Melbourne</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('melbourne.jpg'); /* Cambia 'background.jpg' por tu imagen */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        label, input, select {
+            display: block;
+            margin: 10px auto;
+        }
+        input, select {
+            padding: 5px;
+            width: 80%;
+        }
+        button {
+            padding: 10px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Formulario para Melbourne</h1>
+        
+        <label for="vivienda">🏠 Tipo de vivienda:</label>
+        <select id="vivienda">
+            <option value="universidad">Residencia Universidad</option>
+            <option value="terceros">Vivienda de terceros</option>
+        </select>
+        
+        <label for="roomies">👨‍👩‍👧‍👦 Número de acompañantes (si aplica):</label>
+        <input type="number" id="roomies" min="1">
+        
+        <label for="transporte">🚲 Transporte preferido:</label>
+        <select id="transporte">
+            <option value="bicicleta">Bicicleta</option>
+            <option value="publico">Transporte Público</option>
+        </select>
+        
+        <label for="taxis">🚕 Taxis por semana:</label>
+        <input type="number" id="taxis" min="0">
+        
+        <label for="comerFuera">🍽️ Comidas fuera por semana:</label>
+        <input type="number" id="comerFuera" min="0">
+        
+        <label for="cafes">☕ Cafés por semana:</label>
+        <input type="number" id="cafes" min="0">
+        
+        <label for="cine">🎬 Entradas al cine por mes:</label>
+        <input type="number" id="cine" min="0">
+        
+        <label for="turismo">🌍 Turismo mensual por la ciudad:</label>
+        <input type="number" id="turismo" min="0">
+        
+        <label for="discoteca">🎉 Entradas a discoteca por mes:</label>
+        <input type="number" id="discoteca" min="0">
+        
+        <label for="bebidas">🍹 Bebidas en la discoteca:</label>
+        <input type="number" id="bebidas" min="0">
+        
+        <label for="suscripciones">📺 Suscripciones a streaming:</label>
+        <input type="number" id="suscripciones" min="0">
+        
+        <label>🎵 ¿Servicio de música?</label>
+        <input type="checkbox" id="musica">
+        
+        <label>🏋️ ¿Vas a ir al gimnasio?</label>
+        <input type="checkbox" id="gimnasio">
+        
+        <label for="compras">🛍️ Compras mensuales (ropa, libros, etc.):</label>
+        <input type="number" id="compras" min="0">
+        
+        <label>💼 ¿Vas a trabajar?</label>
+        <input type="checkbox" id="trabajo">
+        
+        <label for="pago">💰 Pago por hora de trabajo:</label>
+        <input type="number" id="pago" min="0">
+        
+        <label for="horas">⏳ Horas por semana:</label>
+        <input type="number" id="horas" min="0">
+        
+        <label for="semanas">📅 Semanas por año:</label>
+        <input type="number" id="semanas" min="0">
+        
+        <button id="calcular">Calcular</button>
+
+        <script src="script2.js"></script>
+        
+        <h2 id="resultado">Costo de vida anual en Melbourne: </h2>
+    </div>
+</body>
+</html>
