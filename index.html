@@ -6,34 +6,34 @@
     <title>Calculadora de Costo de Vida</title>
     <style>
         /* Fondo con imagen */
-        body {
+        body { /* Ubicación del fondo y preferencias */
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('mapa.jpg') no-repeat center center/cover;
+            background: url('mapa.jpg') no-repeat center center/cover; /* Imagen */
             margin: 0;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px); /* Desenfoque del fondo */
         }
         
         /* Contenedor central */
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.9); /* Color */
+            padding: 30px; 
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 400px;
+            max-width: 400px; /* Tamaño del contenedor para escoger la ciudad */
             width: 90%;
         }
         
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Color del texto de "Calculadora de costo de vida" */
             color: #333;
         }
 
-        /* Estilo del select */
+        /* Estilo del boton select */
         .select-container {
             display: flex;
             align-items: center;
@@ -65,17 +65,17 @@
             font-size: 16px;
             border: none;
             border-radius: 8px;
-            background: linear-gradient(to right, #007BFF, #00C6FF);
+            background: linear-gradient(to right, #007BFF, #00C6FF); /* Difuminado del botón */
             color: white;
             cursor: pointer;
-            transition: transform 0.2s ease, background 0.3s ease;
+            transition: transform 0.2s ease, background 0.3s ease; /*Animación del botón al ubicar el cursor por encima*/
             width: 100%;
             font-weight: bold;
         }
 
         button:disabled {
             background: #ccc;
-            cursor: not-allowed;
+            cursor: not-allowed; /* Color del botón cuando está desactivado */
         }
 
         button:hover:enabled {
@@ -85,28 +85,28 @@
 
     </style>
     <script>
-        function redirectToCity() {
+        function redirectToCity() { /*Función para dirijir al nuevo formulario*/
             let city = document.getElementById("city").value;
             if (city) {
-                window.location.href = city + ".html";
+                window.location.href = city + ".html"; /* nombre del archivo dependiendo la ciudad (nombreciudad.html) */
             }
         }
 
         function toggleButton() {
-            let city = document.getElementById("city").value;
-            document.getElementById("continueBtn").disabled = !city;
+            let city = document.getElementById("city").value; /*Nombre de la ciudad según la opción escogida*/
+            document.getElementById("continueBtn").disabled = !city; 
         }
     </script>
 </head>
 <body>
 
     <div class="container">
-        <h1>🌍 Calculadora del costo de vida</h1>
+        <h1>🌍 Calculadora del costo de vida</h1> 
         <div class="select-container">
             <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Ubicación">
-            <select id="city" onchange="toggleButton()">
+            <select id="city" onchange="toggleButton()"> 
                 <option value="">-- Selecciona una ciudad --</option>
-                <option value="sydney">Sydney</option>
+                <option value="sydney">Sídney</option>
                 <option value="melbourne">Melbourne</option>
                 <option value="monterrey">Monterrey</option>
                 <option value="cdmx">Ciudad de México</option>
