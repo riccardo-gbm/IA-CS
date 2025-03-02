@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Sydney</title>
+    <title>Formulario Sídney</title> 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('sydney.jpg'); /* Cambia 'background.jpg' por tu imagen */
-            background-size: cover;
+        body {/*Personalización de vista del cuerpo de la imagen*/
+            font-family: Arial, sans-serif; /*Fuente */
+            background-image: url('sydney.jpg'); /* Fondo con imagen */
+            background-size: cover; 
             background-position: center;
             color: white;
             text-align: center;
             padding: 20px;
+            backdrop-filter: blur(3px); /*Filtro de desenfoque*/
         }
-        .container {
+        .container {/*Del contenedor de las preguntas: color, y tamaño*/
             background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 20px; /*Del contenedor de las preguntas: color, y tamaño*/
+            border-radius: 10px; 
             display: inline-block;
         }
         label, input, select {
@@ -26,14 +27,14 @@
         }
         input, select {
             padding: 5px;
-            width: 80%;
+            width: 80%; /*Longitud de los bloques de pregunta*/
         }
-        button {
+        button { /*Estilo de los distintos botones para calcular, convertir y descargar el informe en pdf*/
             padding: 10px;
             background: #ff9800;
             color: white;
             border: none;
-            cursor: pointer;
+            cursor: pointer; 
             border-radius: 5px;
             font-size: 16px;
         }
@@ -44,12 +45,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>📋 Formulario para Sydney</h1>
+        <h1>📋 Formulario para Sídney</h1> 
         
         <label for="vivienda">🏠 Tipo de vivienda:</label>
         <select id="vivienda">
             <option value="universidad">Residencia Universidad</option>
-            <option value="college">Residential College</option>
+            <option value="college">Residential College</option> 
             <option value="terceros">Vivienda de terceros</option>
         </select>
         
@@ -77,7 +78,7 @@
         <label for="turismo">🌍 Turismo mensual por la ciudad:</label>
         <input type="number" id="turismo" min="0">
         
-        <label for="discoteca">🎉 Entradas a discoteca por mes:</label>
+        <label for="discoteca">🎉 Entradas a discoteca por semana:</label>
         <input type="number" id="discoteca" min="0">
         
         <label for="bebidas">🍹 Bebidas en la discoteca:</label>
@@ -111,7 +112,39 @@
 
         <script src="script.js"></script>
         
-        <h2 id="resultado">Costo de vida anual en Sydney: </h2>
+        <h2 id="resultado">Costo de vida anual en Sídney: </h2>
+
+        <h3>Conversor de Monedas 💰</h3>
+        <label for="fromCurrency">De: </label>
+        <select id="fromCurrency">
+            <option value="AUD">AUD - Dólar Australiano</option>
+        </select>
+        
+        <label for="toCurrency">A: </label>
+        <select id="toCurrency">
+            <option value="USD">USD - Dólar Estadounidense</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="MXN">MXN - Peso Mexicano</option>
+            <option value="JPY">JPY - Yen Japonés</option>
+            <option value="CAD">CAD - Dólar Canadiense</option>
+            <option value="AUD">AUD - Dólar Australiano</option>
+            <option value="CHF">CHF - Franco Suizo</option>
+            <option value="CNY">CNY - Yuan Chino</option>
+            <option value="BRL">BRL - Real Brasileño</option>
+            <option value="RUB">RUB - Rublo Ruso</option>
+            <option value="GBP">GBP - Libra Esterlina</option>
+            <option value="INR">INR - Rupia India</option>
+        </select>
+
+        <button onclick="convertCurrency()">Convertir</button>
+
+        <h4 id="result"></h4>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+        <button onclick="generarPDF()">Descargar Informe en PDF</button>
+
     </div>
+    
 </body>
 </html>
