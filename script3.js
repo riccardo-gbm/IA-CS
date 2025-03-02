@@ -1,53 +1,65 @@
 let renta = 0, servicios = 0, alimentacion = 0, costoTransporte = 0, entretenimiento = 0, salud = 0, personales = 0, propios = 0, impuestos = 0;
-const API_KEY = "f62bef46f86c9dfc98ce086f"; //Llave única API para obtener las tasas de conversión de monedas en tiempo real
+const API_KEY = "f62bef46f86c9dfc98ce086f";  //Llave única API para obtener las tasas de conversión de monedas en tiempo real
 const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/pair`; //Hipervínculo para obtenerlas
 
-costoVidaCalculado=0/*Establecimiento de variables globales*/
+costoVidaCalculado=0 /*Establecimiento de variables globales*/
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("calcular").addEventListener("click", calcularCosto);
-});/*Ejecución de todo el documento*/
+}); /*Ejecución de todo el documento*/
 
 function calcularCosto() { /*Cálculo lógicos y matemáticos del costo de vida*/
-    let vivienda = document.getElementById("vivienda").value; //valor de vivienda obtenido en cdmx.html
+    let vivienda = document.getElementById("vivienda").value; //valor de vivienda obtenido en monterrey.html
 
-    if (vivienda === "universidad") { /*Costo de distintas variables si el usuario escoge una residencia universitaria*/
-        renta = 15000*12 ;
+    if (vivienda === "u_c_c") { /*Costo de distintas variables si el usuario escoge una residencia universitaria compartida dentro del campus*/
+        renta = 10780*12 ;
         servicios = 300;
-        alimentacion = 3000;
-    } else {  /*Costo de distintas variables si el usuario escoge una vivienda aparte*/
+        alimentacion = 0;
+    } else if (vivienda ==='u_s_c') { /*Costo de distintas variables si el usuario escoge una residencia universitaria única dentro del campus*/
+        renta =16287*12
+        servicios = 300
+        alimentacion = 0
+    } else if (vivienda ==='u_c_f') { /*Costo de distintas variables si el usuario escoge una residencia universitaria compartida fuera del campus*/
+        renta =7680*12
+        servicios = 300
+        alimentacion = 0
+    } else if (vivienda ==='u_s_f') { /*Costo de distintas variables si el usuario escoge una residencia universitaria única fuera  del campus*/
+        renta =10290*12
+        servicios = 300
+        alimentacion = 0
+    } else { /*Costo de distintas variables si el usuario escoge una vivienda aparte*/
         let roomies = parseInt(document.getElementById("roomies").value) || 1; /*número de acompañantes en una vivienda, divide el costo de ciertas variables*/
-        renta = (10000 / (roomies+1))*12; //Siempre se considera una pesona en la vivienda aunque no tenga acompañantes, 
-        servicios = 300+525+517+300;
-        alimentacion = 3000;
+        renta = (9000 / (roomies+1))*12; //Siempre se considera una pesona en la vivienda aunque no tenga acompañantes, 
+        servicios = ((500+700+517+300)/(roomies +1));
+        alimentacion = 2700;
     }
-    /*Valores obtenidos en cdmx.html*/
+    /*Valores obtenidos en monterrey.html*/
     let transporte = document.getElementById("transporte").value;
     let taxis = parseInt(document.getElementById("taxis").value) || 0;
-    costoTransporte = transporte === "bicicleta" ? 25000 + ((taxis * 100 * 4)*12) : (500 + (taxis * 4 * 100))*12;
+    costoTransporte = transporte === "bicicleta" ? (10250 + ((taxis * 150 * 4)*12)) : ((600 + (taxis * 4 * 150))*12);
 /*Costo anual del transporte dependiendo el medio escogido por el cliente*/
     let comerFuera = parseInt(document.getElementById("comerFuera").value) || 0;
     let cafes = parseInt(document.getElementById("cafes").value) || 0;
-    alimentacion += (comerFuera * 425) + (cafes * 100);
+    alimentacion += (comerFuera * 400) + (cafes * 100);
 /*Alimentación dependiendo la vivienda y las preferencias adicionales*/
     let cine = parseInt(document.getElementById("cine").value) || 0;
     let discoteca = parseInt(document.getElementById("discoteca").value) || 0;
     let bebidas = parseInt(document.getElementById("bebidas").value) || 0;
     let suscripciones = parseInt(document.getElementById("suscripciones").value) || 0;
-    entretenimiento = (cine * 90) + (discoteca * 4 * 400) + (bebidas * 200) + (suscripciones * 120);
+    entretenimiento = (cine * 100) + (discoteca * 4 * 300) + (bebidas * 100) + (suscripciones * 120);
 /*Entretenimiento total junto a las preferencias*/
-    let salud = document.getElementById("salud").checked ? 400:0 ;
+    let salud = document.getElementById("salud").checked ? 900:0 ;
     seguroMedico=salud /*Seguro de salud opcional*/
     personales = 1000 + 100 + 400 + 400; //Gastos personales, higiene, gastos varios, lavandería, y suministros de oficina
     let turismo = parseInt(document.getElementById("turismo").value) || 0;
     let gym = document.getElementById("gimnasio").checked ? 1000 : 0;
     let music = document.getElementById("musica").checked ? 120 : 0;
     let ropa = parseInt(document.getElementById("compras").value) || 0;
-    personales += (ropa * 1400) + (turismo * 2000) + gym + music;
+    personales += (ropa * 1600) + (turismo * 2000) + gym + music;
     propios=1000 /*Libro y material universitario*/
     //Costo total
     costoVidaCalculado = ((servicios + alimentacion + entretenimiento + salud + personales+propios) * 12)+renta+costoTransporte;
-    document.getElementById("resultado").innerText = `Costo de vida anual en Ciudad de México: ${costoVidaCalculado.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}`;
+    document.getElementById("resultado").innerText = `Costo de vida anual en Monterrey: ${costoVidaCalculado.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}`;
 }
 //Conversión del valor calculado de la moneda local a la moneda preferida
 async function convertCurrency() {
@@ -66,7 +78,7 @@ async function convertCurrency() {
         if (!response.ok) throw new Error("Error en la API"); // En caso de que las solicitudes al api se acaben muestra el siguiente error
 
         const data = await response.json();
-        const convertedAmount = data.conversion_result.toFixed(2); //redondeo a 2 cifras decimales
+        const convertedAmount = data.conversion_result.toFixed(2);  //redondeo a 2 cifras decimales
         //muestreo de resultados
         document.getElementById("result").innerText =
             `${costoVidaCalculado.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })} MXN = $${convertedAmount} ${toCurrency}`;
@@ -87,7 +99,7 @@ async function convertirMonto(monto, currency) { //función para convertir los v
 }
 async function generarPDF() { //función de generación del pdf
     const doc = new jspdf.jsPDF();
-    let yOffset = 10; //inicio de la página
+    let yOffset = 10;  //inicio de la página
     const pageHeight = doc.internal.pageSize.height; 
 
     function checkPageBreak() {
@@ -98,7 +110,7 @@ async function generarPDF() { //función de generación del pdf
     }
 //Preferencias del texto 
     doc.setFontSize(18);
-    doc.text("Informe de Costo de Vida en Ciudad de México", 10, yOffset);
+    doc.text("Informe de Costo de Vida en Monterrey", 10, yOffset);
     yOffset += 10;
     checkPageBreak();
 
@@ -135,7 +147,7 @@ async function generarPDF() { //función de generación del pdf
     yOffset += 10;
     checkPageBreak();
 
-    doc.text(`Costo de vida anual en Ciudad de México: ${costoVidaCalculado.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })} MXN`, 10, yOffset);
+    doc.text(`Costo de vida anual en Monterrey: ${costoVidaCalculado.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })} MXN`, 10, yOffset);
     yOffset += 10;
     checkPageBreak();
 
@@ -175,6 +187,6 @@ async function generarPDF() { //función de generación del pdf
     //Costo total
     const costoTotalConvertido = await convertirMonto(costoVidaCalculado, toCurrency);
     doc.text(`Costo total convertido a ${toCurrency}: ${costoTotalConvertido} ${toCurrency}`, 10, yOffset + 10);
-    //Nombre del documento
-    doc.save("Informe_Costo_Vida_CDMX.pdf");
+//NOMBRE DEL DOCUMENTO
+    doc.save("Informe_Costo_Vida_Monterrey.pdf");
 }
