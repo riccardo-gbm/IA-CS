@@ -1,26 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Monterrey</title>
+    <title>Formulario Monterrey</title> 
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('mtry.jpg'); /* Cambia 'background.jpg' por tu imagen */
-            background-size: cover;
+            background-image: url('mtry.jpg'); /*Imagen de Fondo*/
+            background-size: cover; 
             background-position: center;
             color: white;
             text-align: center;
             padding: 20px;
+            backdrop-filter: blur(3px); /*filtro de desenfoque de la imagen de fondo*/
         }
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
+        .container { /*COntenedor de las preguntas del formulario*/
+            background: rgba(0, 0, 0, 0.7); /*Color*/
+            padding: 20px; 
             border-radius: 10px;
             display: inline-block;
         }
-        label, input, select {
+        label, input, select { /*Modo para seleccionar*/
             display: block;
             margin: 10px auto;
         }
@@ -28,7 +29,7 @@
             padding: 5px;
             width: 80%;
         }
-        button {
+        button { /*Boton para calcular*/
             padding: 10px;
             background: #ff9800;
             color: white;
@@ -105,6 +106,37 @@
         <script src="script4.js"></script>
         
         <h2 id="resultado">Costo de vida anual en Monterrey: </h2>
+
+        <h3>Conversor de Monedas 💰</h3>
+        <label for="fromCurrency">De: </label>
+        <select id="fromCurrency">
+            <option value="MXN">MXN - Peso Mexicano</option>
+        </select>
+        
+        <label for="toCurrency">A: </label>
+        <select id="toCurrency">
+            <option value="USD">USD - Dólar Estadounidense</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="MXN">MXN - Peso Mexicano</option>
+            <option value="JPY">JPY - Yen Japonés</option>
+            <option value="CAD">CAD - Dólar Canadiense</option>
+            <option value="AUD">AUD - Dólar Australiano</option>
+            <option value="CHF">CHF - Franco Suizo</option>
+            <option value="CNY">CNY - Yuan Chino</option>
+            <option value="BRL">BRL - Real Brasileño</option>
+            <option value="RUB">RUB - Rublo Ruso</option>
+            <option value="GBP">GBP - Libra Esterlina</option>
+            <option value="INR">INR - Rupia India</option>
+        </select>
+
+        <button onclick="convertCurrency()">Convertir</button>
+
+        <h4 id="result"></h4>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+        <button onclick="generarPDF()">Descargar Informe en PDF</button>
+
     </div>
 </body>
 </html>
