@@ -171,7 +171,7 @@ async function generarPDF() { //función de generación del pdf
     yOffset += 10;
     checkPageBreak();
 
-    doc.text(`Costo de vida anual en Toronto: ${costoVidaCalculado.toLocaleString('en-CA', { style: 'currency', currency: 'CAS' })} CAD`, 10, yOffset);
+    doc.text(`Costo de vida anual en Toronto: ${costoVidaCalculado.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' })} CAD`, 10, yOffset);
     yOffset += 10;
     checkPageBreak();
 
@@ -202,7 +202,7 @@ async function generarPDF() { //función de generación del pdf
 
     categorias.forEach((categoria, index) => {
         doc.text(
-            `${categoria.nombre}: ${categoria.valor.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' })} AUD = ${conversiones[index]} ${toCurrency}`,
+            `${categoria.nombre}: ${categoria.valor.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' })} CAD = ${conversiones[index]} ${toCurrency}`,
             10,
             yOffset
         );
