@@ -171,7 +171,7 @@ async function generarPDF() { //función de generación del pdf
     yOffset += 10;
     checkPageBreak();
 
-    doc.text(`Costo de vida anual en Toronto: ${costoVidaCalculado.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' })} AUD`, 10, yOffset);
+    doc.text(`Costo de vida anual en Toronto: ${costoVidaCalculado.toLocaleString('en-CA', { style: 'currency', currency: 'CAS' })} CAD`, 10, yOffset);
     yOffset += 10;
     checkPageBreak();
 
